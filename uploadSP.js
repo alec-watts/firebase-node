@@ -1,9 +1,10 @@
 import fs from "fs";
 import path from "path";
-import db from "./config.js";
+import db from "./firebase/config.js";
+import { exit } from "process";
 
 // Define the path to the SystemPrompts folder
-const systemPromptsDir = './SystemPrompts';
+const systemPromptsDir = './grab/SystemPrompts';
 const files = fs.readdirSync(systemPromptsDir);
 const parsedContents = {};
 
@@ -14,9 +15,6 @@ files.forEach((file) => {
   const parsedContent = JSON.parse(content);
   parsedContents[file] = parsedContent;
 });
-
-// Now, parsedContents holds the parsed content of each file
-console.log(parsedContents);
 
 (async function uploadToFirestore() {
   for (const [filename, content] of Object.entries(parsedContents)) {
