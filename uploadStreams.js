@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import db from "./firebase/config.js";
+import { FieldValue } from "firebase-admin/firestore";
 
 // Define the path to the SystemPrompts folder
 const systemPromptsDir = "./grab/streams";
@@ -40,6 +41,11 @@ console.log(parsedContents);
 
     // Remove the 'id' from the content object so it's not part of the document's .data()
     delete content.id;
+
+    delete content.timestamp;
+
+    // Add the createdAt field with a server timestamp
+    content.createdAt = FieldValue.serverTimestamp();
 
     try {
       await db.collection("streams").doc(docId).set(content);

@@ -19,6 +19,7 @@ const addCreatedAtToAllDocs = async (collectionName) => {
 };
 
 // Usage
-// addCreatedAtToAllDocs("systemPrompts");
+addCreatedAtToAllDocs("systemPrompts");
 // addCreatedAtToAllDocs("functionCalls");
-addCreatedAtToAllDocs("chats");
+// addCreatedAtToAllDocs("chats");
+// addCreatedAtToAllDocs("streams");
