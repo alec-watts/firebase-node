@@ -10,7 +10,8 @@ const addCreatedAtToAllDocs = async (collectionName) => {
   snapshot.docs.forEach((doc) => {
     const docRef = collectionRef.doc(doc.id);
     batch.update(docRef, {
-      createdAt: FieldValue.serverTimestamp(),
+      // createdAt: FieldValue.serverTimestamp(),
+      createdAt: Math.floor(new Date().getTime() / 1000),
     });
   });
 
@@ -19,7 +20,7 @@ const addCreatedAtToAllDocs = async (collectionName) => {
 };
 
 // Usage
-addCreatedAtToAllDocs("systemPrompts");
+// addCreatedAtToAllDocs("systemPrompts");
 // addCreatedAtToAllDocs("functionCalls");
-// addCreatedAtToAllDocs("chats");
+addCreatedAtToAllDocs("chats");
 // addCreatedAtToAllDocs("streams");
